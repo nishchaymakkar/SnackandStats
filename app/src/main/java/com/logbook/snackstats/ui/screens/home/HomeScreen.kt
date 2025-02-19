@@ -2,7 +2,6 @@
 
 package com.logbook.snackstats.ui.screens.home
 
-import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
@@ -11,7 +10,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -22,7 +20,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Bloodtype
 import androidx.compose.material.icons.filled.Fastfood
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -42,7 +39,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.logbook.snackstats.R
-import com.logbook.snackstats.ui.components.CircularIndicator
+import com.logbook.snackstats.ui.components.SugarLevelIndicator
 import com.logbook.snackstats.ui.components.ExpandableFab
 import com.logbook.snackstats.ui.theme.SnackStatsTheme
 
@@ -63,7 +60,6 @@ private fun SharedTransitionScope.HomeScreenPreview() {
       }
 }
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SharedTransitionScope.HomeScreen(
@@ -115,7 +111,7 @@ fun SharedTransitionScope.HomeScreen(
                 onAddSugarLog = {},
                 onAddFoodLog = onAddFoodLog,
                 animatedVisiblityScope = animatedVisibilityScope,
-                modifier = modifier.padding(10.dp)
+                modifier = modifier
             )
         }
     ){ innerPadding ->
@@ -126,13 +122,12 @@ fun SharedTransitionScope.HomeScreen(
         ){
             Column(
                 Modifier
-                    .fillMaxWidth()
-                    .padding(top = 30.dp),
+                    .fillMaxWidth(),
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally) {
 
-                CircularIndicator(
-                    canvasSize = 150.dp,
+                SugarLevelIndicator(
+                    canvasSize = 200.dp,
                     indicatorValue = 80
                 )
                 HomeItemCard(
@@ -164,7 +159,7 @@ fun HomeItemCard(
 ) {
     Card (
         onClick = onClick, shape = RoundedCornerShape(15.dp),
-        modifier = modifier.fillMaxWidth().height(200.dp).padding(10.dp),
+        modifier = modifier.fillMaxWidth().height(200.dp).padding(horizontal = 16.dp, vertical = 8.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceContainer
         ),
